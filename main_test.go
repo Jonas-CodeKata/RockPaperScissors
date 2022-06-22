@@ -57,6 +57,16 @@ func Test_DrawWhenBothAreTheSame(t *testing.T) {
 	)
 }
 
+func Test_RockCrushesScissors(t *testing.T) {
+	runTests(t,
+		testCase{
+			p1:       rock,
+			p2:       scissors,
+			expected: win,
+			msg:      "rock crushes scissors",
+		})
+}
+
 type testCase struct {
 	p1       shape
 	p2       shape
@@ -73,12 +83,6 @@ func runTests(t *testing.T, harness ...testCase) {
 
 func Test_beat(t *testing.T) {
 	tt := []testCase{
-		{
-			p1:       rock,
-			p2:       scissors,
-			expected: win,
-			msg:      "rock crushes scissors",
-		},
 		{
 			p1:       rock,
 			p2:       paper,
