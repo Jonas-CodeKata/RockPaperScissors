@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-type result = int
+type result int
 
 const (
 	draw result = iota
@@ -13,7 +13,19 @@ const (
 	lose
 )
 
-type shape = int
+func (r result) String() string {
+	switch r {
+	case draw:
+		return "Draw"
+	case win:
+		return "Win"
+	case lose:
+		return "Lose"
+	}
+	return "UnknownResultValue"
+}
+
+type shape int
 
 const (
 	rock shape = iota
@@ -29,6 +41,10 @@ func beat(prop1, prop2 shape) result {
 	}
 
 	if prop2 == paper {
+		return lose
+	}
+
+	if prop1 == scissors {
 		return lose
 	}
 	return win
@@ -64,7 +80,14 @@ func Test_RockCrushesScissors(t *testing.T) {
 			p2:       scissors,
 			expected: win,
 			msg:      "rock crushes scissors",
-		})
+		},
+		testCase{
+			p1:       scissors,
+			p2:       rock,
+			expected: lose,
+			msg:      "scissors lose against rock",
+		},
+	)
 }
 
 type testCase struct {
