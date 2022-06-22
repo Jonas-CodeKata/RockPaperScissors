@@ -98,6 +98,12 @@ func Test_PaperCoverRock(t *testing.T) {
 			expected: win,
 			msg:      "paper cover rock",
 		},
+		testCase{
+			p1:       rock,
+			p2:       paper,
+			expected: lose,
+			msg:      "rock lose against paper",
+		},
 	)
 }
 
