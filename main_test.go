@@ -40,28 +40,19 @@ func beat(prop1, prop2 shape) result {
 		return draw
 	}
 
-	if prop1 == rock {
-		if prop2 == scissors {
-			return win
-		}
-		return lose
+	if prop1 == rock && prop2 == scissors {
+		return win
 	}
 
-	if prop1 == scissors {
-		if prop2 == paper {
-			return win
-		}
-		return lose
+	if prop1 == scissors && prop2 == paper {
+		return win
 	}
 
-	if prop1 == paper {
-		if prop2 == rock {
-			return win
-		}
-		return lose
+	if prop1 == paper && prop2 == rock {
+		return win
 	}
 
-	return win
+	return lose
 }
 
 func Test_DrawWhenBothAreTheSame(t *testing.T) {
