@@ -40,13 +40,18 @@ func beat(prop1, prop2 shape) result {
 		return draw
 	}
 
+	if prop1 == scissors && prop2 == paper {
+		return win
+	}
+
 	if prop2 == paper {
 		return lose
 	}
 
-	if prop1 == scissors {
+	if prop1 == scissors && prop2 == rock {
 		return lose
 	}
+
 	return win
 }
 
@@ -103,6 +108,17 @@ func Test_PaperCoverRock(t *testing.T) {
 			p2:       paper,
 			expected: lose,
 			msg:      "rock lose against paper",
+		},
+	)
+}
+
+func Test_ScissorsCutsPaper(t *testing.T) {
+	runTests(t,
+		testCase{
+			p1:       scissors,
+			p2:       paper,
+			expected: win,
+			msg:      "scissors cut paper",
 		},
 	)
 }
