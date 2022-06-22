@@ -5,27 +5,35 @@ import (
 	"testing"
 )
 
-const draw = "draw"
+const (
+	draw = iota
+	win
+	lose
+)
 
-func beat(prop1 string, prop2 string) bool {
-	if prop2 == "paper" {
-		return false
+func beat(prop1 string, prop2 string) int {
+	if prop1 == prop2 {
+		return draw
 	}
-	return true
+
+	if prop2 == "paper" {
+		return lose
+	}
+	return win
 }
 
 func TestRockBeatScissors(t *testing.T) {
 	prop1 := "rock"
 	prop2 := "scissors"
 	res := beat(prop1, prop2)
-	assert.True(t, res, "Rock should beat scissors.")
+	assert.Equal(t, win, res, "Rock should beat scissors.")
 }
 
 func TestRockLoseAgainstPaper(t *testing.T) {
 	prop1 := "rock"
 	prop2 := "paper"
 	res := beat(prop1, prop2)
-	assert.False(t, res, "Rock should lose against paper.")
+	assert.Equal(t, lose, res, "Rock should lose against paper.")
 }
 
 func TestRockDrawAgainstItSelf(t *testing.T) {
