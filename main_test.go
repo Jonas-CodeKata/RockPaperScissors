@@ -34,6 +34,29 @@ func beat(prop1, prop2 shape) result {
 	return win
 }
 
+func Test_DrawWhenBothAreTheSame(t *testing.T) {
+	runTests(t,
+		testCase{
+			p1:       rock,
+			p2:       rock,
+			expected: draw,
+			msg:      "rock vs rock give a draw",
+		},
+		testCase{
+			p1:       paper,
+			p2:       paper,
+			expected: draw,
+			msg:      "paper vs paper give a draw",
+		},
+		testCase{
+			p1:       scissors,
+			p2:       scissors,
+			expected: draw,
+			msg:      "scissors vs scissors give a draw",
+		},
+	)
+}
+
 type testCase struct {
 	p1       shape
 	p2       shape
@@ -61,12 +84,6 @@ func Test_beat(t *testing.T) {
 			p2:       paper,
 			expected: lose,
 			msg:      "paper covers rock",
-		},
-		{
-			p1:       rock,
-			p2:       rock,
-			expected: draw,
-			msg:      "rock vs rock is a draw",
 		},
 	}
 
