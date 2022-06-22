@@ -21,7 +21,9 @@ const (
 	scissors
 )
 
-func beat(prop1 shape, prop2 shape) result {
+// beat define if the first proposition (prop1) win or lose against the second proposition (prop2),
+// if both propositions are the same, the result will be a draw.
+func beat(prop1, prop2 shape) result {
 	if prop1 == prop2 {
 		return draw
 	}
@@ -51,4 +53,25 @@ func TestRockDrawAgainstItSelf(t *testing.T) {
 	prop2 := rock
 	res := beat(prop1, prop2)
 	assert.Equal(t, draw, res, "Rock vs Rock should be draw.")
+}
+
+func TestParametricTests(t *testing.T) {
+	tt := []struct {
+		p1       shape
+		p2       shape
+		expected result
+		msg      string
+	}{
+		{
+			p1:       rock,
+			p2:       scissors,
+			expected: win,
+			msg:      "rock crushes scissors",
+		},
+	}
+
+	for _, test := range tt {
+		res := beat(test.p1, test.p2)
+		assert.Equal(t, test.expected, res, test.msg)
+	}
 }
