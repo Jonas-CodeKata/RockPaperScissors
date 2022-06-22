@@ -90,6 +90,17 @@ func Test_RockCrushesScissors(t *testing.T) {
 	)
 }
 
+func Test_PaperCoverRock(t *testing.T) {
+	runTests(t,
+		testCase{
+			p1:       paper,
+			p2:       rock,
+			expected: win,
+			msg:      "paper cover rock",
+		},
+	)
+}
+
 type testCase struct {
 	p1       shape
 	p2       shape
@@ -102,17 +113,4 @@ func runTests(t *testing.T, harness ...testCase) {
 		res := beat(test.p1, test.p2)
 		assert.Equal(t, test.expected, res, test.msg)
 	}
-}
-
-func Test_beat(t *testing.T) {
-	tt := []testCase{
-		{
-			p1:       rock,
-			p2:       paper,
-			expected: lose,
-			msg:      "paper covers rock",
-		},
-	}
-
-	runTests(t, tt...)
 }
