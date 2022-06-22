@@ -34,13 +34,22 @@ func beat(prop1, prop2 shape) result {
 	return win
 }
 
+type testCase struct {
+	p1       shape
+	p2       shape
+	expected result
+	msg      string
+}
+
+func runTests(t *testing.T, harness ...testCase) {
+	for _, test := range harness {
+		res := beat(test.p1, test.p2)
+		assert.Equal(t, test.expected, res, test.msg)
+	}
+}
+
 func Test_beat(t *testing.T) {
-	tt := []struct {
-		p1       shape
-		p2       shape
-		expected result
-		msg      string
-	}{
+	tt := []testCase{
 		{
 			p1:       rock,
 			p2:       scissors,
@@ -61,8 +70,5 @@ func Test_beat(t *testing.T) {
 		},
 	}
 
-	for _, test := range tt {
-		res := beat(test.p1, test.p2)
-		assert.Equal(t, test.expected, res, test.msg)
-	}
+	runTests(t, tt...)
 }
