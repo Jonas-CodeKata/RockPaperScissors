@@ -40,6 +40,10 @@ func beat(prop1, prop2 shape) result {
 		return draw
 	}
 
+	if prop1 == paper && prop2 == scissors {
+		return lose
+	}
+
 	if prop1 == scissors && prop2 == paper {
 		return win
 	}
@@ -119,6 +123,12 @@ func Test_ScissorsCutsPaper(t *testing.T) {
 			p2:       paper,
 			expected: win,
 			msg:      "scissors cut paper",
+		},
+		testCase{
+			p1:       paper,
+			p2:       scissors,
+			expected: lose,
+			msg:      "paper lose against scissors",
 		},
 	)
 }
