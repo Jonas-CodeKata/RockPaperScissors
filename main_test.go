@@ -13,18 +13,6 @@ const (
 	lose
 )
 
-func (r result) String() string {
-	switch r {
-	case draw:
-		return "Draw"
-	case win:
-		return "Win"
-	case lose:
-		return "Lose"
-	}
-	return "UnknownResultValue"
-}
-
 type shape int
 
 const (
