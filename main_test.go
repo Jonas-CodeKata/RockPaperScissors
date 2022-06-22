@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+const draw = "draw"
+
 func beat(prop1 string, prop2 string) bool {
 	if prop2 == "paper" {
 		return false
@@ -24,4 +26,11 @@ func TestRockLoseAgainstPaper(t *testing.T) {
 	prop2 := "paper"
 	res := beat(prop1, prop2)
 	assert.False(t, res, "Rock should lose against paper.")
+}
+
+func TestRockDrawAgainstItSelf(t *testing.T) {
+	prop1 := "rock"
+	prop2 := "rock"
+	res := beat(prop1, prop2)
+	assert.Equal(t, draw, res, "Rock vs Rock should be draw.")
 }
