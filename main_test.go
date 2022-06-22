@@ -40,15 +40,9 @@ func beat(prop1, prop2 shape) result {
 		return draw
 	}
 
-	if prop1 == rock && prop2 == scissors {
-		return win
-	}
-
-	if prop1 == scissors && prop2 == paper {
-		return win
-	}
-
-	if prop1 == paper && prop2 == rock {
+	if prop1 == rock && prop2 == scissors ||
+		prop1 == scissors && prop2 == paper ||
+		prop1 == paper && prop2 == rock {
 		return win
 	}
 
